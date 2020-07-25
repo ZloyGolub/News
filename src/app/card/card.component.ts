@@ -1,12 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TopHeadlines } from './../../api/api';
+
+// let text = '';
+
+// TopHeadlines.getNews().then(data => {
+//     text = data.totalResults;
+// })
+
+// alert(text);
 
 @Component({
     selector: 'app-card',
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.css'] 
 })
-export class CardComponent {
-    title = 'My card title'
+export class CardComponent implements OnInit{
+    text = '';
 
-    text = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, dicta!'
+    ngOnInit(): void {
+        TopHeadlines.getNews().then(data => {
+            this.text = data.status;
+        })
+    }
+
+    title = 'My card title';
+
+   
+
 }
